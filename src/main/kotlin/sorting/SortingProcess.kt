@@ -3,13 +3,13 @@ package sorting
 import sorting.algorithm.InsertionSort
 import sorting.compare.Ascending
 import sorting.element.MonitoredArray
-import sorting.listener.ArrayConsolePrinter
+import sorting.listener.ConsoleArrayPrinter
 
 class SortingProcess {
 
     fun example() {
         val monitoredArray = MonitoredArray.createRandomArray(4)
-        ArrayConsolePrinter(monitoredArray)
+        ConsoleArrayPrinter(monitoredArray)
         val sortingAlgorithm = InsertionSort()
         sortingAlgorithm.sort(monitoredArray, Ascending())
     }
