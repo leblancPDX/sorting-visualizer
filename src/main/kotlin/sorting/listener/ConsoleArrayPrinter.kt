@@ -2,7 +2,7 @@ package sorting.listener
 
 import sorting.element.MonitoredArray
 
-class ArrayConsolePrinter(val monitoredArray: MonitoredArray): ArrayListener {
+class ConsoleArrayPrinter(val monitoredArray: MonitoredArray): ArrayListener {
 
     init {
         monitoredArray.registerObserver(this)
