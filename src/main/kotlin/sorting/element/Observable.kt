@@ -1,19 +1,19 @@
 package sorting.element
 
-import sorting.listener.Observer
+import sorting.listener.ArrayListener
 
 abstract class Observable {
-    private val observers: ArrayList<Observer> = ArrayList()
+    private val arrayListeners: ArrayList<ArrayListener> = ArrayList()
 
-    fun registerObserver(observer: Observer) {
-        observers.add(observer)
+    fun registerObserver(arrayListener: ArrayListener) {
+        arrayListeners.add(arrayListener)
     }
 
-    fun removeObserver(observer: Observer) {
-        observers.remove(observer)
+    fun removeObserver(arrayListener: ArrayListener) {
+        arrayListeners.remove(arrayListener)
     }
 
     fun notifyObservers() {
-        observers.forEach { it.update() }
+        arrayListeners.forEach { it.update() }
     }
 }

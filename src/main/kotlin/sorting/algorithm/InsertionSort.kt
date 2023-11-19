@@ -14,7 +14,9 @@ class InsertionSort : SortingAlgorithm {
                 arr.update(i + 1, arr.get(i))
                 i--
             }
-            arr.update(i + 1, element)
+            if (i != j - 1) {
+                arr.update(i + 1, element)
+            }
         }
 
         return arr

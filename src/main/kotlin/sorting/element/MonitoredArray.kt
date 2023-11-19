@@ -1,8 +1,8 @@
 package sorting.element
 
-class MonitoredArray(private val array: Array<Int>): Observable() {
+class MonitoredArray(private var array: Array<Int>): Observable() {
 
-    val size = array.size
+    var size = array.size
 
     fun get(index:Int): Int {
         return array[index]
@@ -22,5 +22,13 @@ class MonitoredArray(private val array: Array<Int>): Observable() {
         array[i] = array[j]
         array[j] = tmp
         notifyObservers()
+    }
+
+    companion object MonitoredArrayFactory {
+        fun createRandomArray(size: Int) : MonitoredArray {
+            val array = IntArray(size) { it }
+            array.shuffle()
+            return MonitoredArray(array.toTypedArray())
+        }
     }
 }

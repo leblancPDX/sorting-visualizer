@@ -1,6 +1,6 @@
 package sorting.listener
 
-interface Observer {
+interface ArrayListener {
 
     fun update()
 }
