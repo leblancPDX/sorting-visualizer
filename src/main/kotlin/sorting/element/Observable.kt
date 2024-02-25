@@ -13,7 +13,12 @@ abstract class Observable {
         arrayListeners.remove(arrayListener)
     }
 
-    fun notifyObservers() {
-        arrayListeners.forEach { it.update() }
+    protected fun notifyArrayObservers(array: Array<Int>) {
+        arrayListeners.forEach { it.update(array) }
     }
+
+    protected fun notifyElementObservers(index: Int) {
+        arrayListeners.forEach { it.update(index) }
+    }
+
 }

@@ -1,20 +1,32 @@
 package sorting.listener
 
-import sorting.element.MonitoredArray
+class ConsoleArrayPrinter: ArrayListener {
 
-class ConsoleArrayPrinter(val monitoredArray: MonitoredArray): ArrayListener {
+    private val red = "\u001b[31m"
 
-    init {
-        monitoredArray.registerObserver(this)
-        render()
+    // Resets previous color codes
+    private val reset = "\u001b[0m"
+
+    private var lastIndexes = mutableListOf(-1)
+
+    override fun update(array: Array<Int>) {
+        render(array)
+        lastIndexes = mutableListOf()
     }
 
-    fun render() {
-        monitoredArray.iterator().forEach { print(it.toString() + " ") }
+    override fun update(index: Int) {
+        lastIndexes.add(index)
+    }
+
+    private fun render(array: Array<Int>) {
+        array.forEachIndexed { index, element ->
+            if (lastIndexes.contains(index)) {
+                print("$red$element $reset")
+            }
+            else {
+                print("$element ")
+            }
+        }
         println()
-    }
-
-    override fun update() {
-        render()
     }
 }

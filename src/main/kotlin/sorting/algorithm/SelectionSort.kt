@@ -1,12 +1,15 @@
 package sorting.algorithm
 
-import sorting.compare.OrderingLogic
+import sorting.algorithm.compare.OrderingLogic
 import sorting.element.MonitoredArray
 
-class SelectionSort : SortingAlgorithm {
+class SelectionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
 
-    override fun sort(arr: MonitoredArray, ordering: OrderingLogic): MonitoredArray {
-        ordering.resetCount()
+    override fun getName(): String {
+        return "Selection Sort --> " + ordering.getName()
+    }
+
+    override fun sort(arr: MonitoredArray): MonitoredArray {
         for (unsortedPartFirstIndex in 0..<arr.size) {
             var minNumberIndex = unsortedPartFirstIndex
             for (unsortedPartCurrentIndex in unsortedPartFirstIndex..<arr.size) {
@@ -14,14 +17,8 @@ class SelectionSort : SortingAlgorithm {
                     minNumberIndex = unsortedPartCurrentIndex
                 }
             }
-            if (minNumberIndex != unsortedPartFirstIndex) {
-                arr.swap(unsortedPartFirstIndex, minNumberIndex)
-            }
+            arr.swap(unsortedPartFirstIndex, minNumberIndex)
         }
         return arr
-    }
-
-    override fun getName(): String {
-        return "Selection Sort"
     }
 }

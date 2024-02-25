@@ -2,5 +2,7 @@ package sorting.listener
 
 interface ArrayListener {
 
-    fun update()
+    fun update(array: Array<Int>)
+
+    fun update(index: Int)
 }

@@ -1,12 +1,15 @@
 package sorting.algorithm
 
-import sorting.compare.OrderingLogic
+import sorting.algorithm.compare.OrderingLogic
 import sorting.element.MonitoredArray
 
-class InsertionSort : SortingAlgorithm {
+class InsertionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
 
-    override fun sort(arr: MonitoredArray, ordering: OrderingLogic): MonitoredArray {
-        ordering.resetCount()
+    override fun getName(): String {
+        return "Insertion Sort --> " + ordering.getName()
+    }
+
+    override fun sort(arr: MonitoredArray): MonitoredArray {
         for (j in 1..<arr.size) {
             var i = j - 1
             val element = arr.get(j)
@@ -20,9 +23,5 @@ class InsertionSort : SortingAlgorithm {
         }
 
         return arr
-    }
-
-    override fun getName(): String {
-        return "Insertion Sort"
     }
 }
