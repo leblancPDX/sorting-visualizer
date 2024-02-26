@@ -8,7 +8,7 @@ import kotlin.system.measureNanoTime
 
 class SortingProcess(private val sortingAlgorithm: SortingAlgorithm, private val arrayListener: ArrayListener) {
 
-    fun timeSortingAlgorithm(monitoredArray: MonitoredArray<Any>): Long {
+    fun timeSortingAlgorithm(monitoredArray: MonitoredArray): Long {
         println(sortingAlgorithm.getName())
         monitoredArray.registerObserver(arrayListener)
         monitoredArray.notifyOnStart()

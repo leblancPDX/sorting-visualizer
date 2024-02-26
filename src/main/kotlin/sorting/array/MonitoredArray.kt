@@ -39,28 +39,49 @@ class MonitoredArray(private val array: Array<ArrayElement>): Observable() {
     }
 
     companion object MonitoredArrayFactory {
-        fun createRandomArray(size: Int) : MonitoredArray {
+        fun createRandomArray(size: Int, ordering: Ordering = Ordering.ASCENDING) : MonitoredArray {
             val array = IntArray(size) { it }
             array.shuffle()
+            return when (ordering) {
+                Ordering.ASCENDING -> convertToIntAscending(array)
+                Ordering.DESCENDING -> convertToIntDescending(array)
+            }
+        }
+
+        fun createSortedArray(size: Int, ordering: Ordering = Ordering.ASCENDING): MonitoredArray {
+            val array = IntArray(size) { it }
+            return when (ordering) {
+                Ordering.ASCENDING -> convertToIntAscending(array)
+                Ordering.DESCENDING -> convertToIntDescending(array)
+            }
+        }
+
+        fun createReverseSortedArray(size: Int, ordering: Ordering = Ordering.ASCENDING): MonitoredArray {
+            val array = IntArray(size) { it }
+            array.reverse()
+            return when (ordering) {
+                Ordering.ASCENDING -> convertToIntAscending(array)
+                Ordering.DESCENDING -> convertToIntDescending(array)
+            }
+        }
+
+        fun createArrayWithFewUniques(size: Int, ordering: Ordering = Ordering.ASCENDING): MonitoredArray {
+            val array = IntArray(size) { it / (size / 10) }
+            array.shuffle()
+            return when (ordering) {
+                Ordering.ASCENDING -> convertToIntAscending(array)
+                Ordering.DESCENDING -> convertToIntDescending(array)
+            }
+        }
+
+        private fun convertToIntAscending(array: IntArray) : MonitoredArray {
             val out = array.map { IntAscending(it) }
             return MonitoredArray(out.toTypedArray())
         }
 
-        fun createSortedArray(size: Int): MonitoredArray {
-            val array = IntArray(size) { it }
-            return MonitoredArray(array.toTypedArray())
-        }
-
-        fun createReverseSortedArray(size: Int): MonitoredArray {
-            val array = IntArray(size) { it }
-            array.reverse()
-            return MonitoredArray(array.toTypedArray())
-        }
-
-        fun createArrayWithFewUniques(size: Int): MonitoredArray {
-            val array = IntArray(size) { it / (size / 10) }
-            array.shuffle()
-            return MonitoredArray(array.toTypedArray())
+        private fun convertToIntDescending(array: IntArray) : MonitoredArray {
+            val out = array.map { IntDescending(it) }
+            return MonitoredArray(out.toTypedArray())
         }
     }
 }

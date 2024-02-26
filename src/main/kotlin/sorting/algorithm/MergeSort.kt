@@ -31,7 +31,7 @@ class MergeSort(private val ordering: OrderingLogic) : SortingAlgorithm {
         }
     }
 
-    private fun merge(arr: MonitoredArray, auxArray: IntArray, low: Int, mid: Int, high: Int) {
+    private fun merge(arr: MonitoredArray, auxArray: Array, low: Int, mid: Int, high: Int) {
         for (i in low..high) {
             auxArray[i] = arr[i]
         }

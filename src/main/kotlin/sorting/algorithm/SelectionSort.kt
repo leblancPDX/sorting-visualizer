@@ -12,8 +12,8 @@ class SelectionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
     override fun sort(arr: MonitoredArray): MonitoredArray {
         for (i in 0..<arr.size) {
             var minElementIndex = i
-            for (j in i + 1..<arr.size) {
-                if (ordering.compare(arr[minElementIndex], arr[j])) {
+            for (j in i + 1..<arr.size) { // a > b
+                if (arr[j] < arr[minElementIndex]) {
                     minElementIndex = j
                 }
             }

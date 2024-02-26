@@ -13,7 +13,7 @@ class InsertionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
         for (j in 1..<arr.size) {
             var i = j - 1
             val element = arr[j]
-            while (i >= 0 && ordering.compare(arr[i], element)) {
+            while (i >= 0 && arr[i] > element) {
                 arr[i + 1] = arr[i]
                 i--
             }
