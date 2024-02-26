@@ -1,14 +1,14 @@
 package sorting
 
 import sorting.algorithm.SortingAlgorithm
-import sorting.element.MonitoredArray
-import sorting.listener.ArrayListener
-import sorting.listener.ConsoleArrayPrinter
+import sorting.array.MonitoredArray
+import sorting.array.ArrayListener
+import sorting.array.ConsoleArrayPrinter
 import kotlin.system.measureNanoTime
 
 class SortingProcess(private val sortingAlgorithm: SortingAlgorithm, private val arrayListener: ArrayListener) {
 
-    fun timeSortingAlgorithm(monitoredArray: MonitoredArray): Long {
+    fun timeSortingAlgorithm(monitoredArray: MonitoredArray<Any>): Long {
         println(sortingAlgorithm.getName())
         monitoredArray.registerObserver(arrayListener)
         monitoredArray.notifyOnStart()

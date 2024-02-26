@@ -1,6 +1,6 @@
 package sorting.algorithm
 
-import sorting.element.MonitoredArray
+import sorting.array.MonitoredArray
 
 interface SortingAlgorithm {
 

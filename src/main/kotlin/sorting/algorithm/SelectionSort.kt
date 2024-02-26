@@ -1,7 +1,7 @@
 package sorting.algorithm
 
 import sorting.algorithm.compare.OrderingLogic
-import sorting.element.MonitoredArray
+import sorting.array.MonitoredArray
 
 class SelectionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
 
@@ -10,14 +10,14 @@ class SelectionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
     }
 
     override fun sort(arr: MonitoredArray): MonitoredArray {
-        for (unsortedPartFirstIndex in 0..<arr.size) {
-            var minNumberIndex = unsortedPartFirstIndex
-            for (unsortedPartCurrentIndex in unsortedPartFirstIndex..<arr.size) {
-                if (ordering.compare(arr.get(minNumberIndex), arr.get(unsortedPartCurrentIndex))) {
-                    minNumberIndex = unsortedPartCurrentIndex
+        for (i in 0..<arr.size) {
+            var minElementIndex = i
+            for (j in i + 1..<arr.size) {
+                if (ordering.compare(arr[minElementIndex], arr[j])) {
+                    minElementIndex = j
                 }
             }
-            arr.swap(unsortedPartFirstIndex, minNumberIndex)
+            arr.swap(i, minElementIndex)
         }
         return arr
     }

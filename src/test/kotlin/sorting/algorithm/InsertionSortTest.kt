@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import sorting.algorithm.compare.Ascending
 import sorting.algorithm.compare.Descending
-import sorting.element.MonitoredArray
+import sorting.array.MonitoredArray
 
 class InsertionSortTest {
 
