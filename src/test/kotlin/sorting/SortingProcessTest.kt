@@ -4,6 +4,7 @@ import io.mockk.justRun
 import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
+import sorting.algorithm.BubbleSort
 import sorting.algorithm.InsertionSort
 import sorting.algorithm.MergeSort
 import sorting.algorithm.SelectionSort
@@ -43,6 +44,13 @@ class SortingProcessTest {
     @Test
     fun `should print to console when using ConsoleArrayPrinter and MergeSort`() {
         val sortingProcess = SortingProcess.createSortingProcessWithConsolePrinter(MergeSort())
+        val millis = sortingProcess.timeSortingAlgorithm(MonitoredArray.createRandomArray(10))
+        assertTrue(millis >= 0)
+    }
+
+    @Test
+    fun `should print to console when using ConsoleArrayPrinter and BubbleSort`() {
+        val sortingProcess = SortingProcess.createSortingProcessWithConsolePrinter(BubbleSort())
         val millis = sortingProcess.timeSortingAlgorithm(MonitoredArray.createRandomArray(10))
         assertTrue(millis >= 0)
     }
