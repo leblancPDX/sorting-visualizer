@@ -1,27 +1,21 @@
 package sorting.algorithm
 
-import sorting.compare.OrderingLogic
-import sorting.element.MonitoredArray
+import sorting.array.MonitoredArray
 
 class SelectionSort : SortingAlgorithm {
 
-    override fun sort(arr: MonitoredArray, ordering: OrderingLogic): MonitoredArray {
-        ordering.resetCount()
-        for (unsortedPartFirstIndex in 0..<arr.size) {
-            var minNumberIndex = unsortedPartFirstIndex
-            for (unsortedPartCurrentIndex in unsortedPartFirstIndex..<arr.size) {
-                if (ordering.compare(arr.get(minNumberIndex), arr.get(unsortedPartCurrentIndex))) {
-                    minNumberIndex = unsortedPartCurrentIndex
+    override fun getName() = "Selection Sort"
+
+    override fun sort(arr: MonitoredArray): MonitoredArray {
+        for (i in 0..<arr.size) {
+            var minElementIndex = i
+            for (j in i + 1..<arr.size) { // a > b
+                if (arr[j] < arr[minElementIndex]) {
+                    minElementIndex = j
                 }
             }
-            if (minNumberIndex != unsortedPartFirstIndex) {
-                arr.swap(unsortedPartFirstIndex, minNumberIndex)
-            }
+            arr.swap(i, minElementIndex)
         }
         return arr
-    }
-
-    override fun getName(): String {
-        return "Selection Sort"
     }
 }

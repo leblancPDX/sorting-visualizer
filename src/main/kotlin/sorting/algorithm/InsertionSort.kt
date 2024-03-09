@@ -1,28 +1,24 @@
 package sorting.algorithm
 
-import sorting.compare.OrderingLogic
-import sorting.element.MonitoredArray
+import sorting.array.MonitoredArray
 
 class InsertionSort : SortingAlgorithm {
 
-    override fun sort(arr: MonitoredArray, ordering: OrderingLogic): MonitoredArray {
-        ordering.resetCount()
-        for (j in 1..<arr.size) {
+    override fun getName() = "Insertion Sort"
+
+    override fun sort(arr: MonitoredArray): MonitoredArray {
+        for (j in 1 until arr.size) {
             var i = j - 1
-            val element = arr.get(j)
-            while (i >= 0 && ordering.compare(arr.get(i), element)) {
-                arr.update(i + 1, arr.get(i))
+            val element = arr[j]
+            while (i >= 0 && arr[i] > element) {
+                arr[i + 1] = arr[i]
                 i--
             }
             if (i != j - 1) {
-                arr.update(i + 1, element)
+                arr[i + 1] = element
             }
         }
 
         return arr
-    }
-
-    override fun getName(): String {
-        return "Insertion Sort"
     }
 }
