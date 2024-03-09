@@ -1,12 +1,11 @@
 package sorting.algorithm
 
-import sorting.algorithm.compare.OrderingLogic
 import sorting.array.MonitoredArray
 
-class SelectionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
+class SelectionSort : SortingAlgorithm {
 
     override fun getName(): String {
-        return "Selection Sort --> " + ordering.getName()
+        return "Selection Sort"
     }
 
     override fun sort(arr: MonitoredArray): MonitoredArray {

@@ -1,16 +1,13 @@
 package sorting.algorithm
 
-import sorting.algorithm.compare.OrderingLogic
 import sorting.array.MonitoredArray
 
-class InsertionSort(private val ordering: OrderingLogic) : SortingAlgorithm {
+class InsertionSort : SortingAlgorithm {
 
-    override fun getName(): String {
-        return "Insertion Sort --> " + ordering.getName()
-    }
+    override fun getName() = "Insertion Sort"
 
     override fun sort(arr: MonitoredArray): MonitoredArray {
-        for (j in 1..<arr.size) {
+        for (j in 1 until arr.size) {
             var i = j - 1
             val element = arr[j]
             while (i >= 0 && arr[i] > element) {

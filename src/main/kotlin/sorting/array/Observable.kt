@@ -11,7 +11,7 @@ abstract class Observable {
         arrayListeners.remove(arrayListener)
     }
 
-    protected fun notifyArrayObservers(array: List<String>) {
+    protected fun notifyArrayObservers(array: Array<ArrayElement>) {
         arrayListeners.forEach { it.update(array) }
     }
 

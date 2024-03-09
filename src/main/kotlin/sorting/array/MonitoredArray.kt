@@ -5,7 +5,7 @@ class MonitoredArray(private val array: Array<ArrayElement>): Observable() {
     var size = array.size
 
     fun notifyOnStart() {
-        notifyArrayObservers(stringList())
+        notifyArrayObservers(array)
     }
 
     operator fun get(index:Int): ArrayElement {
@@ -16,26 +16,36 @@ class MonitoredArray(private val array: Array<ArrayElement>): Observable() {
     operator fun set(index: Int, value: ArrayElement) {
         array[index] = value
         notifyElementObservers(index)
-        notifyArrayObservers(stringList())
+        notifyArrayObservers(array)
     }
 
     fun swap(i:Int, j:Int) {
         val tmp = array[i]
         array[i] = array[j]
         array[j] = tmp
-        notifyArrayObservers(stringList())
+        notifyArrayObservers(array)
     }
 
     fun getArray(): Array<ArrayElement> {
         return array
     }
 
-    fun checkArray(other: Array<ArrayElement>): Boolean {
-        return array.contentEquals(other)
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as MonitoredArray
+
+        if (!array.contentEquals(other.array)) return false
+        if (size != other.size) return false
+
+        return true
     }
 
-    private fun stringList(): List<String> {
-        return array.map { toString() }
+    override fun hashCode(): Int {
+        var result = array.contentHashCode()
+        result = 31 * result + size
+        return result
     }
 
     companion object MonitoredArrayFactory {

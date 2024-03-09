@@ -9,7 +9,7 @@ class ConsoleArrayPrinter: ArrayListener {
 
     private var lastIndexes = mutableListOf(-1)
 
-    override fun update(array: List<String>) {
+    override fun update(array: Array<ArrayElement>) {
         render(array)
         lastIndexes = mutableListOf()
     }
@@ -18,7 +18,7 @@ class ConsoleArrayPrinter: ArrayListener {
         lastIndexes.add(index)
     }
 
-    private fun render(array: List<String>) {
+    private fun render(array: Array<ArrayElement>) {
         array.forEachIndexed { index, element ->
             if (lastIndexes.contains(index)) {
                 print("$red$element $reset")
