@@ -4,9 +4,7 @@ import sorting.array.MonitoredArray
 
 class SelectionSort : SortingAlgorithm {
 
-    override fun getName(): String {
-        return "Selection Sort"
-    }
+    override fun getName() = "Selection Sort"
 
     override fun sort(arr: MonitoredArray): MonitoredArray {
         for (i in 0..<arr.size) {

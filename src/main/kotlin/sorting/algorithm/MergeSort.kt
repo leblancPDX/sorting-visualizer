@@ -8,9 +8,7 @@ class MergeSort : SortingAlgorithm {
     // Initial implementation was taken from here:
     // https://medium.com/@vamsitallapudi/merge-sort-kotlin-implementation-sorting-algorithms-3-2d076f39b55c
 
-    override fun getName(): String {
-        return "Merge Sort"
-    }
+    override fun getName() = "Merge Sort"
 
     override fun sort(arr: MonitoredArray): MonitoredArray {
         mergeSort(arr)
